@@ -9,17 +9,19 @@
 <br><br>
 
 
-## Step 2. Clone the git repository
+## Step 2. Clone the git repository and install packages
 * For both Mac/Linux and Windows users, open the terminal / powershell and clone the repo.
-* **Note**: For the Windows users, I highly recommend using the WSL.
-
+* **Note**: For the Windows users, I ***strongly*** recommend using the WSL.
+* Run following in the terminal
 ```bash
 git clone https://github.com/leeparkuky/pads-coding-assistant.git
+cd pads-coding-assistant
+pip install -r requirements.txt
 ```
 
 <br><br>
 
-## Step 3. Copy and Paste the organization ID and API Token into `openai_config`
+## Step 3. Copy and Paste the organization ID and API Token into `openai_config` file
 ![example](openai_config.png)
 **Note** : Don't forget to save the `openai_config`
 <br><br>
