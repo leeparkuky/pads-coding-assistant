@@ -322,7 +322,7 @@ Datetime: {str(datetime.now())}
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description='Coding GPT')
-    parser.add_argument('--codes', default = None, required = False, type = str)
+    parser.add_argument('--user_message', default = None, required = False, type = str)
     parser.add_argument('--error_message', default = None, required = False, type = str)
     parser.add_argument('--num_result', default = 1, required = False, type = int) #
     parser.add_argument('--save_result', default = False, required = False, type = bool) #
@@ -342,8 +342,8 @@ if __name__ == '__main__':
         kwargs['top_k'] = args.num_result
     if args.error_message is not None:
         kwargs['error_message'] = args.error_message
-    if args.codes is not None:
-        kwargs['codes'] = args.codes
+    if args.user_message is not None:
+        kwargs['codes'] = args.user_message
     
     if len(kwargs):
         assistant.get_chat_response(**kwargs)
