@@ -156,7 +156,7 @@ Datetime: {str(datetime.now())}
         system_message = defaultdict(default_message)
         system_message['role'] = 'system'
         if language:
-            system_message['content'] += f' suggesting {langauge} codes.'
+            system_message['content'] += f' suggesting {language} codes.'
         else:
             system_message['content'] += '.'
         return dict(system_message)
