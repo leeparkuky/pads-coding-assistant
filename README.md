@@ -1,19 +1,30 @@
 # Coding Assistant for PADS and UKY Statistics
 
 
-## Settings
 
-### Step 1. Create an OpenAI account and obtain an API key and an organization ID
+## Step 1. Create an OpenAI account and obtain an API key and an organization ID
 
 * [Finding your OpenAI organization ID](https://platform.openai.com/account/org-settings)
 * [Generating and retrieving your OpenAI API Token](https://platform.openai.com/account/api-keys)
+<br><br>
 
-### Step 2. Copy and Paste the organization ID and API Token into `openai_config`
+
+## Step 2. Clone the git repository
+* For both Mac/Linux and Windows users, open the terminal / powershell and clone the repo.
+* **Note**: For the Windows users, I highly recommend using the WSL.
+
+```bash
+git clone https://github.com/leeparkuky/pads-coding-assistant.git
+```
+
+<br><br>
+
+## Step 3. Copy and Paste the organization ID and API Token into `openai_config`
 ![example](openai_config.png)
-
 **Note** : Don't forget to save the `openai_config`
+<br><br>
 
-### Step 3. Use the config_gpt.py
+## Step 4. Use the config_gpt.py
 
 * **Option 1**: Using CLI (Using Mac/Linux terminal)
     - Quick start:
