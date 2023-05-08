@@ -1,0 +1,9 @@
+openai
+pandas
+numpy
+collections
+typing
+IPython
+datetime
+os
+dataclasses
