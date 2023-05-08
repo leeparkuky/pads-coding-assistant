@@ -34,11 +34,11 @@ pip install -r requirements.txt
         - `--language` argument tells ChatGPT to be an instructor for a specific programming language. The default language is *python*
         - If the code is running fine and is error-proof, ChatGPT may explain each component in the code.
         ```bash
-        python coding_gpt.py --language R
+        python coding_gpt.py --language "R"
         ```
     - When you have an error message:
         ```bash
-        python coding_gpt.py --error_message "<error message>" --language SAS
+        python coding_gpt.py --error_message "<error message>" --language "SAS"
         ```
 
     - Other options:
