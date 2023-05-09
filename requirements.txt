@@ -7,3 +7,4 @@ IPython
 datetime
 os
 dataclasses
+IPython

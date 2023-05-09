@@ -3,7 +3,7 @@ import codecs
 import os
 
 
-VERSION = '0.0.1'
+VERSION = '0.0.1.dev'
 DESCRIPTION = 'Coding Assistance using ChatGPT from OpenAI'
 LONG_DESCRIPTION = """
 The coding assistance tool is a cutting-edge software application that leverages the power of ChatGPT, an advanced natural language processing technology developed by OpenAI.
