@@ -8,7 +8,13 @@ from IPython.display import Markdown
 from IPython import get_ipython
 from datetime import datetime
 from dataclasses import dataclass
+# To get the config, we need to add a current path into sys.path
+import sys
+from pathlib import Path
+path_root = Path(__file__).parents[0]
+sys.path.append(str(path_root))
 from config import openai_config
+
 
 wrong_code = """import numpy as np
 
@@ -342,7 +348,6 @@ if __name__ == '__main__':
     parser.add_argument('--language', default = 'python', required = False, type = str) #
     parser.add_argument('--only_question', default = False, required = False, type = bool) #
     args = parser.parse_args()
-
     if args.language != 'python':
         config = openai_config.from_file(language = args.language)
         assistant = coding_assistant(config = config, record_history = args.save_result)

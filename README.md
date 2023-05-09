@@ -9,7 +9,7 @@
 <br><br>
 
 
-## Step 2. Clone the git repository and install packages
+## Step 2-1. CLI Users : Clone the git repository and install packages
 * To clone the repository and install packages, open the terminal or PowerShell for both Mac/Linux and Windows users.
 * Note: For Windows users, it is strongly recommended to use the WSL.
 * Run the following command in the terminal:
@@ -17,16 +17,30 @@
 git clone https://github.com/leeparkuky/pads-coding-assistant.git
 cd pads-coding-assistant
 pip install -r requirements.txt
+cd pads_gpt_assistant
+```
+
+## Step 2-2. Python Users: install package
+```bash
+pip install pads_gpt_assistant
 ```
 
 <br><br>
 
-## Step 3. Copy and Paste the organization ID and API Token into `openai_config` file
+## Step 3-1. [CLI User] Copy and Paste the organization ID and API Token into `pads_gpt_assistant/openai_config` file
 ![example](openai_config.png)
 **Note** : Remember to save the openai_config file.
 <br><br>
 
-## Step 4. Use the config_gpt.py
+## Step 3-2. [Python User] Execute the following python lines
+```python
+from pads_gpt_assistant.config import create_openai_config_file
+organization_key = "<paste the organization key>"
+api_key = "<paste your api key>"
+create_openai_config_file(organization_key, api_key)
+```
+
+## Step 4. Use either the coding_gpt.py script or coding_assistant (from pads_gpt_assistant python package)
 
 * **Option 1**: Using CLI (Using Mac/Linux terminal)
     - Quick start:
@@ -67,12 +81,12 @@ pip install -r requirements.txt
         python coding_gpt.py --user_message "<your question>" --only_question true
         ```
 
-* **Option 2**: Using it as a local module in a IPython kernel
+* **Option 2**: Using the module installed by `pip install pads_gpt_assistant`
 - Quick start:
     - First, create an assistant object:
         ```python
-        from coding_gpt import *
-        assistant = coding_assistance(record_history = True, continue_conversation = True) 
+        from pads_gpt_assistant.coding_gpt import *
+        assistant = coding_assistant(record_history = True, continue_conversation = True) 
         ```
     - Setting the `record_history` argument true will create the `history.txt` file and the `continue_conversation` argument with true will enable the use of past conversations.
     - Then, for the first conversation, use the `get_chat_response` method function:
