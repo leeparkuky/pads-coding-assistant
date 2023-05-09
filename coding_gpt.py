@@ -243,14 +243,27 @@ Datetime: {str(datetime.now())}
         # step 2: depending on the tasks, append the messages
         if task == 'code_completion':
             task_message = """
-            Complete the rest of the codes provided below:
+            From the following codes do the following tasks:
+            if they are not incomplete, please finish the remaining codes;
+            if you find any error, please inform me of any errors you may find and provide me with suggestions as well;
+            Lastly, if the codes are both comprehensive and free of errors, please clarify the actual function of the codes.
 
-            Codes:\n
+            Codes: 
             """
             task_message += codes
+            task_message += "\n\nPlease pay the most attention on finding and informing me of any possible errors."
             messages.append({'role':'user', 'content': task_message})
 
         elif task == 'qna':
+            if error_message:
+                task_message = f"""I received an error message from my {self.language} code which reads as follows: {args.error_message}
+                
+                As a result, I have a question regarding the following code that caused the error: {codes}
+                """
+
+            else:
+                task_message = codes
+
             messages.append({'role':'user', 'content': task_message})
 
         elif task == 'errors': # it may require error message and the codes
@@ -281,9 +294,9 @@ Datetime: {str(datetime.now())}
         
 
         if error_message is not None:
-            if task != 'errors':
+            if task not in ['errors','qna']:
                 import logging
-                logging.warning('with the given error message, the task will be set as "errors"')
+                logging.warning('The task will be categorized as "errors" based on the provided error message and codes.')
             task = 'errors'
 
         chat_kwargs = self.gen_chat_kwargs(codes, error_message, task, examples, **kwargs)
@@ -315,7 +328,7 @@ Datetime: {str(datetime.now())}
         else:
             print(resp_text.replace('. ','.\n'))
 
-        
+
 
 
 #%% argparse
@@ -327,6 +340,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_result', default = 1, required = False, type = int) #
     parser.add_argument('--save_result', default = False, required = False, type = bool) #
     parser.add_argument('--language', default = 'python', required = False, type = str) #
+    parser.add_argument('--only_question', default = False, required = False, type = bool) #
     args = parser.parse_args()
 
     if args.language != 'python':
@@ -344,7 +358,9 @@ if __name__ == '__main__':
         kwargs['error_message'] = args.error_message
     if args.user_message is not None:
         kwargs['codes'] = args.user_message
-    
+    if args.only_question:
+        kwargs['task'] = 'qna'
+
     if len(kwargs):
         assistant.get_chat_response(**kwargs)
     else:
